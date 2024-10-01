@@ -1,22 +1,28 @@
-#include <iostream>
-#include "UnorderedArray.h"
 #include "OrderedArray.h"
+#include "UnorderedArray.h"
 
 int main() {
-    UnorderedArray<int> unorderedArray;
-    unorderedArray.push(5);
-    unorderedArray.push(3);
-    unorderedArray.push(8);
+    // Create an OrderedArray with duplicate prevention enabled
+    OrderedArray<int> orderedArr(2, true);
+    orderedArr.push(3);
+    orderedArr.push(1);
+    orderedArr.push(2);
+    orderedArr.push(2);  // Duplicate, should not be added
+    orderedArr.push(4);
 
-    std::cout << "Unordered Array Size: " << unorderedArray.getSize() << std::endl;
+    // Output: 1 2 3 4
+    std::cout << "Ordered Array (No Duplicates): ";
+    orderedArr.print();
 
-    OrderedArray<int> orderedArray;
-    orderedArray.push(5);
-    orderedArray.push(3);
-    orderedArray.push(5); // Duplicate, should not be added
-    orderedArray.push(8);
+    // Create an UnorderedArray
+    UnorderedArray<int> unorderedArr;
+    unorderedArr.push(5);
+    unorderedArr.push(3);
+    unorderedArr.push(7);
 
-    std::cout << "Ordered Array Size: " << orderedArray.getSize() << std::endl;
+    // Output: 5 3 7
+    std::cout << "Unordered Array: ";
+    unorderedArr.print();
 
     return 0;
 }
